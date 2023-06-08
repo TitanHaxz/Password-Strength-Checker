@@ -25,7 +25,10 @@ If the entered password does not meet any of these requirements, corresponding e
 ## Example
 ```
 Enter your password: myPassword123!
-Password must contain uppercase letters, lowercase letters, digits, and special characters.
+Your password is weak. You must meet the following requirements:
+
+You must use at least one special character.
+Strength Score: 3
 ```
 
 ## Contributions
@@ -35,4 +38,3 @@ Contributions to the project are welcome. If you have any suggestions or improve
 ## License
 
 This project is licensed under the MIT License.
-
