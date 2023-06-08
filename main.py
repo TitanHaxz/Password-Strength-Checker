@@ -1,17 +1,38 @@
 import string
 
-password = input("Enter your password: ")
+while True:
+    password = input("Enter your password: ")
 
-if len(password) < 8:
-    print("Password must be at least 8 characters long.")
+    missing_requirements = []
 
-has_upper = any(char in string.ascii_uppercase for char in password)
-has_lower = any(char in string.ascii_lowercase for char in password)
-has_digit = any(char.isdigit() for char in password)
-has_special = any(char in string.punctuation for char in password)
+    if len(password) < 8:
+        missing_requirements.append("Password must be at least 8 characters long.")
 
-if not has_upper or not has_lower or not has_digit or not has_special:
-    print("Password must contain uppercase letters, lowercase letters, digits, and special characters.")
+    if not any(char in string.ascii_uppercase for char in password):
+        missing_requirements.append("You must use at least one uppercase letter.")
 
-if len(set(password)) != len(password):
-    print("Password must not contain repeating characters.")
+    if not any(char in string.ascii_lowercase for char in password):
+        missing_requirements.append("You must use at least one lowercase letter.")
+
+    if not any(char.isdigit() for char in password):
+        missing_requirements.append("You must use at least one digit.")
+
+    if not any(char in string.punctuation for char in password):
+        missing_requirements.append("You must use at least one special character.")
+
+    if len(set(password)) != len(password):
+        missing_requirements.append("Password must not contain repeating characters.")
+
+    if len(missing_requirements) == 0:
+        strength_score = 5
+        print("Your password is strong! Strength Score: ", strength_score)
+    else:
+        strength_score = 5 - len(missing_requirements)
+        print("Your password is weak. You must meet the following requirements:")
+        for requirement in missing_requirements:
+            print("- " + requirement)
+        print("Strength Score: ", strength_score)
+    
+    continue_input = input("Do you want to enter another password? (Yes/No): ")
+    if continue_input.lower() != "yes":
+        break
